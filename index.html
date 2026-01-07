@@ -2,224 +2,174 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Identity | Air New Zealand</title>
+<title>Identity | Demo Airline</title>
 <style>
   :root {
-    --bg-start: #050518;
-    --bg-mid:   #241b57;
-    --bg-end:   #3b1f83;
-    --card-bg:  #050509;
-    --text-main:#ffffff;
-    --text-muted:#b7c0d0;
-    --accent:   #00a5b8;
-    --accent-hover:#00c0d6;
-    --border-subtle:#303344;
-    --input-bg:#050509;
+    --bg1:#040414;
+    --bg2:#151339;
+    --bg3:#2c1b6b;
+    --card:#050509;
+    --text:#ffffff;
+    --muted:#c1c7d6;
+    --accent:#00a7b8;
+    --accent-hover:#00c3d6;
+    --border:#323548;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-                 Roboto, "Helvetica Neue", Arial, sans-serif;
+  *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;}
+
+  html,body{height:100%;}
+
+  body{
+    background:
+      radial-gradient(circle at 0 0,#221a5a 0,var(--bg1) 35%),
+      radial-gradient(circle at 100% 20%,#5230c0 0,var(--bg2) 45%),
+      radial-gradient(circle at 50% 100%,#3e238f 0,var(--bg3) 60%);
+    color:var(--text);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
   }
 
-  html, body {
-    height: 100%;
-    background: radial-gradient(circle at 0 0, #1a1540 0, var(--bg-start) 30%),
-                radial-gradient(circle at 100% 30%, #4b2bb0 0, var(--bg-mid) 40%),
-                radial-gradient(circle at 50% 100%, #2a1e72 0, var(--bg-end) 55%);
-    color: var(--text-main);
+  .page{
+    flex:1;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
   }
 
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .brand{
+    margin-top:56px;
+    font-size:13px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
   }
 
-  .page {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .brand span{font-weight:600;}
+
+  .content{
+    flex:1;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 16px 24px;
   }
 
-  header {
-    padding: 24px 32px 0;
-    width: 100%;
-    max-width: 1200px;
-  }
-
-  .logo {
-    text-align: center;
-    margin-top: 40px;
-    font-size: 14px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .logo span {
-    font-weight: 600;
-  }
-
-  .content {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 40px 16px 32px;
-  }
-
-  .card {
-    background: var(--card-bg);
-    border-radius: 6px;
-    width: 380px;
-    max-width: 90vw;
-    padding: 32px 32px 28px;
+  .card{
+    width:400px;
+    max-width:92vw;
+    background:var(--card);
+    border-radius:4px;
+    padding:32px 32px 28px;
     box-shadow:
-      0 18px 45px rgba(0, 0, 0, 0.75),
-      0 0 0 1px rgba(255, 255, 255, 0.04);
+      0 24px 60px rgba(0,0,0,.85),
+      0 0 0 1px rgba(255,255,255,.04);
   }
 
-  .card h1 {
-    font-size: 24px;
-    margin-bottom: 22px;
+  .card h1{font-size:24px;margin-bottom:20px;}
+
+  .field{margin-bottom:18px;}
+
+  label{
+    display:block;
+    font-size:13px;
+    margin-bottom:6px;
   }
 
-  label {
-    display: block;
-    font-size: 13px;
-    margin-bottom: 6px;
+  .input{
+    width:100%;
+    border-radius:3px;
+    border:1px solid #4a4d5f;
+    background:#050509;
+    padding:10px 10px;
+    color:var(--text);
+    font-size:14px;
+    outline:none;
+  }
+  .input:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 1px rgba(0,167,184,.6);
   }
 
-  .input {
-    width: 100%;
-    background: var(--input-bg);
-    border-radius: 3px;
-    border: 1px solid #4a4d5f;
-    padding: 10px 10px;
-    color: var(--text-main);
-    font-size: 14px;
-    outline: none;
+  .checkbox-row{
+    display:flex;
+    align-items:center;
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:22px;
+  }
+  .checkbox-row input{
+    width:15px;height:15px;margin-right:8px;
   }
 
-  .input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 1px rgba(0, 165, 184, 0.55);
+  .btn-primary{
+    display:inline-block;
+    padding:9px 26px;
+    border-radius:3px;
+    border:none;
+    background:var(--accent);
+    color:#001015;
+    font-size:14px;
+    font-weight:500;
+    cursor:pointer;
+  }
+  .btn-primary:hover{background:var(--accent-hover);}
+
+  .link-row{
+    margin-top:14px;
+    font-size:13px;
+  }
+  .link-row a{
+    color:var(--accent);
+    text-decoration:none;
+  }
+  .link-row a:hover{text-decoration:underline;}
+
+  .divider{
+    border:none;
+    border-bottom:1px solid var(--border);
+    margin:26px 0 18px;
   }
 
-  .field {
-    margin-bottom: 16px;
+  .subheading{
+    font-size:13px;
+    font-weight:500;
+    margin-bottom:8px;
   }
 
-  .checkbox-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 22px;
-    font-size: 13px;
-    color: var(--text-muted);
+  .btn-outline{
+    padding:8px 20px;
+    border-radius:3px;
+    border:1px solid var(--accent);
+    background:transparent;
+    color:var(--accent);
+    font-size:14px;
+    cursor:pointer;
   }
+  .btn-outline:hover{background:rgba(0,167,184,.12);}
 
-  .checkbox-row input {
-    margin-right: 8px;
-    width: 15px;
-    height: 15px;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    padding: 9px 22px;
-    border-radius: 3px;
-    border: none;
-    background: var(--accent);
-    color: #001015;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-
-  .btn-primary:hover {
-    background: var(--accent-hover);
-  }
-
-  .link-row {
-    margin-top: 14px;
-    font-size: 13px;
-  }
-
-  .link-row a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .link-row a:hover {
-    text-decoration: underline;
-  }
-
-  .divider {
-    border: none;
-    border-bottom: 1px solid var(--border-subtle);
-    margin: 26px 0 18px;
-  }
-
-  .subsection-title {
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-
-  .btn-outline {
-    margin-top: 4px;
-    padding: 8px 18px;
-    border-radius: 3px;
-    border: 1px solid var(--accent);
-    background: transparent;
-    color: var(--accent);
-    font-size: 14px;
-    cursor: pointer;
-  }
-
-  .btn-outline:hover {
-    background: rgba(0,165,184,0.1);
-  }
-
-  footer {
-    width: 100%;
-    text-align: center;
-    padding: 8px 0 26px;
-    font-size: 11px;
-    color: var(--text-muted);
-  }
-
-  @media (max-height: 650px) {
-    .logo {
-      margin-top: 20px;
-    }
-    .content {
-      padding-top: 20px;
-    }
+  footer{
+    width:100%;
+    text-align:center;
+    padding:8px 0 26px;
+    font-size:11px;
+    color:var(--muted);
   }
 </style>
 </head>
 <body>
 <div class="page">
-  <header></header>
+  <div class="brand"><span>DEMO AIRLINE</span></div>
 
-  <div class="logo">
-    <span>AIR NEW ZEALAND</span>
-  </div>
-
-  <main class="content">
+  <div class="content">
     <section class="card">
       <h1>Sign in</h1>
 
       <div class="field">
-        <label for="airpoints">Airpoints™ number / username</label>
-        <input id="airpoints" class="input" type="text">
+        <label for="user">Loyalty number / username</label>
+        <input id="user" class="input" type="text">
       </div>
 
       <div class="checkbox-row">
@@ -235,14 +185,12 @@
 
       <hr class="divider">
 
-      <div class="subsection-title">Not an Airpoints™ member?</div>
-      <button class="btn-outline" type="button">Join Airpoints</button>
+      <div class="subheading">Not a member?</div>
+      <button class="btn-outline" type="button">Join now</button>
     </section>
-  </main>
+  </div>
 
-  <footer>
-    A STAR ALLIANCE MEMBER
-  </footer>
+  <footer>A STAR ALLIANCE PARTNER (DEMO)</footer>
 </div>
 </body>
 </html>
