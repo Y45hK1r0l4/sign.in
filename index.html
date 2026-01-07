@@ -2,174 +2,200 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Identity | Demo Airline</title>
+<title>Identity</title>
 <style>
   :root {
-    --bg1:#040414;
-    --bg2:#151339;
-    --bg3:#2c1b6b;
-    --card:#050509;
-    --text:#ffffff;
-    --muted:#c1c7d6;
-    --accent:#00a7b8;
-    --accent-hover:#00c3d6;
-    --border:#323548;
+    --bg-start: #000209;
+    --bg-mid1:  #0e0a2e;
+    --bg-mid2:  #1e145a;
+    --bg-end:   #2a1a7b;
+    --card-bg:  #000508;
+    --text:     #f8f9fc;
+    --muted:    #b7c0d0;
+    --accent:   #00a5b8;
+    --border:   #2f3443;
+    --input-bdr:#474c60;
   }
 
-  *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-  html,body{height:100%;}
+  html, body {
+    height: 100vh;
+    font-family: system-ui, -apple-system, "SF Pro Display", BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
 
-  body{
+  body {
     background:
-      radial-gradient(circle at 0 0,#221a5a 0,var(--bg1) 35%),
-      radial-gradient(circle at 100% 20%,#5230c0 0,var(--bg2) 45%),
-      radial-gradient(circle at 50% 100%,#3e238f 0,var(--bg3) 60%);
-    color:var(--text);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+      radial-gradient(circle at 5% 5%, #0f0c3e 0%, var(--bg-start) 28%),
+      radial-gradient(circle at 95% 25%, #3f2a9f 0%, var(--bg-mid1) 38%),
+      radial-gradient(circle at 50% 100%, #241b6c 0%, var(--bg-end) 62%);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .page{
-    flex:1;
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+  .brand {
+    margin-top: 58px;
+    font-size: 13.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
   }
 
-  .brand{
-    margin-top:56px;
-    font-size:13px;
-    letter-spacing:.16em;
-    text-transform:uppercase;
+  .content {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px 30px;
   }
 
-  .brand span{font-weight:600;}
-
-  .content{
-    flex:1;
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:32px 16px 24px;
-  }
-
-  .card{
-    width:400px;
-    max-width:92vw;
-    background:var(--card);
-    border-radius:4px;
-    padding:32px 32px 28px;
+  .card {
+    width: 392px;
+    background: var(--card-bg);
+    border-radius: 5px;
+    padding: 36px 36px 32px;
     box-shadow:
-      0 24px 60px rgba(0,0,0,.85),
-      0 0 0 1px rgba(255,255,255,.04);
+      0 22px 58px rgba(0,0,0,0.88),
+      0 0 0 1px rgba(255,255,255,0.025);
   }
 
-  .card h1{font-size:24px;margin-bottom:20px;}
-
-  .field{margin-bottom:18px;}
-
-  label{
-    display:block;
-    font-size:13px;
-    margin-bottom:6px;
+  .card h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    line-height: 1.2;
   }
 
-  .input{
-    width:100%;
-    border-radius:3px;
-    border:1px solid #4a4d5f;
-    background:#050509;
-    padding:10px 10px;
-    color:var(--text);
-    font-size:14px;
-    outline:none;
-  }
-  .input:focus{
-    border-color:var(--accent);
-    box-shadow:0 0 0 1px rgba(0,167,184,.6);
+  .field {
+    margin-bottom: 20px;
   }
 
-  .checkbox-row{
-    display:flex;
-    align-items:center;
-    font-size:13px;
-    color:var(--muted);
-    margin-bottom:22px;
-  }
-  .checkbox-row input{
-    width:15px;height:15px;margin-right:8px;
+  label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 7px;
+    font-weight: 500;
   }
 
-  .btn-primary{
-    display:inline-block;
-    padding:9px 26px;
-    border-radius:3px;
-    border:none;
-    background:var(--accent);
-    color:#001015;
-    font-size:14px;
-    font-weight:500;
-    cursor:pointer;
-  }
-  .btn-primary:hover{background:var(--accent-hover);}
-
-  .link-row{
-    margin-top:14px;
-    font-size:13px;
-  }
-  .link-row a{
-    color:var(--accent);
-    text-decoration:none;
-  }
-  .link-row a:hover{text-decoration:underline;}
-
-  .divider{
-    border:none;
-    border-bottom:1px solid var(--border);
-    margin:26px 0 18px;
+  .input {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid var(--input-bdr);
+    background: var(--card-bg);
+    padding: 0 12px;
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
   }
 
-  .subheading{
-    font-size:13px;
-    font-weight:500;
-    margin-bottom:8px;
+  .input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0,165,184,0.3);
   }
 
-  .btn-outline{
-    padding:8px 20px;
-    border-radius:3px;
-    border:1px solid var(--accent);
-    background:transparent;
-    color:var(--accent);
-    font-size:14px;
-    cursor:pointer;
+  .checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 26px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
   }
-  .btn-outline:hover{background:rgba(0,167,184,.12);}
 
-  footer{
-    width:100%;
-    text-align:center;
-    padding:8px 0 26px;
-    font-size:11px;
-    color:var(--muted);
+  .checkbox-row input {
+    margin-top: 2px;
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+  }
+
+  .btn-primary {
+    width: 100%;
+    height: 42px;
+    border-radius: 4px;
+    border: none;
+    background: var(--accent);
+    color: #001415;
+    font-size: 14.5px;
+    font-weight: 550;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: #00b9cc;
+  }
+
+  .link-row {
+    margin-top: 16px;
+  }
+
+  .link-row a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .link-row a:hover {
+    text-decoration: underline;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 28px 0 20px;
+  }
+
+  .subheading {
+    font-size: 13px;
+    font-weight: 550;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .btn-secondary {
+    width: 100%;
+    height: 38px;
+    border-radius: 4px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(0,165,184,0.08);
+  }
+
+  footer {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 28px;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
   }
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="brand"><span>AIR NEW ZEALAND</span></div>
+  <div class="brand">AIR NEW ZEALAND</div>
 
   <div class="content">
     <section class="card">
       <h1>Sign in</h1>
 
       <div class="field">
-        <label for="user">Loyalty number / username</label>
-        <input id="user" class="input" type="text">
+        <label>Loyalty number / username</label>
+        <input class="input" type="text" placeholder="">
       </div>
 
       <div class="checkbox-row">
@@ -177,20 +203,19 @@
         <label for="stay">Stay signed in</label>
       </div>
 
-      <button class="btn-primary" type="button">Sign in</button>
+      <button class="btn-primary">Sign in</button>
 
       <div class="link-row">
-        <a href="#">Recover your account</a>
+        <a href="#">Recover your account?</a>
       </div>
 
-      <hr class="divider">
+      <div class="divider"></div>
 
       <div class="subheading">Not a member?</div>
-      <button class="btn-outline" type="button">Join now</button>
+      <button class="btn-secondary">Join now</button>
     </section>
   </div>
 
-  <footer>DEMO</footer>
-</div>
+  <footer>DEMO PAGE</footer>
 </body>
 </html>
