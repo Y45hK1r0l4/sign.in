@@ -1,309 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Email Alerts - Sonic Healthcare</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f4f5fa;
-      color: #152c5b;
+<meta charset="UTF-8">
+<title>Identity | Air New Zealand</title>
+<style>
+  :root {
+    --bg-start: #050518;
+    --bg-mid:   #241b57;
+    --bg-end:   #3b1f83;
+    --card-bg:  #050509;
+    --text-main:#ffffff;
+    --text-muted:#b7c0d0;
+    --accent:   #00a5b8;
+    --accent-hover:#00c0d6;
+    --border-subtle:#303344;
+    --input-bg:#050509;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    background: radial-gradient(circle at 0 0, #1a1540 0, var(--bg-start) 30%),
+                radial-gradient(circle at 100% 30%, #4b2bb0 0, var(--bg-mid) 40%),
+                radial-gradient(circle at 50% 100%, #2a1e72 0, var(--bg-end) 55%);
+    color: var(--text-main);
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header {
+    padding: 24px 32px 0;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .logo {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .logo span {
+    font-weight: 600;
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 40px 16px 32px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius: 6px;
+    width: 380px;
+    max-width: 90vw;
+    padding: 32px 32px 28px;
+    box-shadow:
+      0 18px 45px rgba(0, 0, 0, 0.75),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+
+  .card h1 {
+    font-size: 24px;
+    margin-bottom: 22px;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .input {
+    width: 100%;
+    background: var(--input-bg);
+    border-radius: 3px;
+    border: 1px solid #4a4d5f;
+    padding: 10px 10px;
+    color: var(--text-main);
+    font-size: 14px;
+    outline: none;
+  }
+
+  .input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(0, 165, 184, 0.55);
+  }
+
+  .field {
+    margin-bottom: 16px;
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 22px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .checkbox-row input {
+    margin-right: 8px;
+    width: 15px;
+    height: 15px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 9px 22px;
+    border-radius: 3px;
+    border: none;
+    background: var(--accent);
+    color: #001015;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-hover);
+  }
+
+  .link-row {
+    margin-top: 14px;
+    font-size: 13px;
+  }
+
+  .link-row a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .link-row a:hover {
+    text-decoration: underline;
+  }
+
+  .divider {
+    border: none;
+    border-bottom: 1px solid var(--border-subtle);
+    margin: 26px 0 18px;
+  }
+
+  .subsection-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .btn-outline {
+    margin-top: 4px;
+    padding: 8px 18px;
+    border-radius: 3px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .btn-outline:hover {
+    background: rgba(0,165,184,0.1);
+  }
+
+  footer {
+    width: 100%;
+    text-align: center;
+    padding: 8px 0 26px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  @media (max-height: 650px) {
+    .logo {
+      margin-top: 20px;
     }
-    .topbar {
-      background: #153573;
-      color: white;
-      padding: 0.9em 0;
-      text-align: center;
-      font-size: 1.4em;
-      font-weight: bold;
-      letter-spacing: 0.04em;
+    .content {
+      padding-top: 20px;
     }
-    .header {
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 4vw 0 4vw;
-      border-bottom: 1px solid #e0e0e4;
-    }
-    .header img {
-      height: 40px;
-      margin-right: 12px;
-    }
-    .header .nav {
-      display: flex;
-      gap: 38px;
-      font-weight: 500;
-      font-size: 1em;
-    }
-    .container {
-      display: flex;
-      max-width: 1120px;
-      margin: 39px auto 0 auto;
-      gap: 32px;
-    }
-    .sidebar {
-      min-width: 230px;
-      background: #e8edf7;
-      border-radius: 6px;
-      padding: 18px 0 18px 0;
-      color: #1a2859;
-      font-size: 1em;
-      box-shadow: 0 2px 11px #0001;
-      height: fit-content;
-      border: 1px solid #ced8ee;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0 0 0 13px;
-      margin: 0;
-    }
-    .sidebar li {
-      margin-bottom: 14px;
-      padding: 5px 0 5px 5px;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: background .18s;
-    }
-    .sidebar li.selected, .sidebar li:hover {
-      background: #205087;
-      color: white;
-      font-weight: bold;
-    }
-    .main-content {
-      background: white;
-      flex: 1;
-      border-radius: 6px;
-      box-shadow: 0 2px 11px #0001;
-      padding: 26px 34px 30px 34px;
-      min-width: 320px;
-      border: 1px solid #ced8ee;
-    }
-    .breadcrumbs {
-      font-size: .97em;
-      color: #5a6cae;
-      margin-bottom: 2em;
-    }
-    .breadcrumbs span {
-      margin: 0 6px;
-    }
-    .title {
-      font-size: 1.3em;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-    .desc, .note {
-      font-size: 1em;
-      line-height: 1.6;
-      color: #3c4861;
-    }
-    .note {
-      margin-bottom: 22px;
-      margin-top: 12px;
-      font-size: 0.97em;
-    }
-    form {
-      margin-top: 18px;
-      margin-bottom: 18px;
-      font-size: 1em;
-    }
-    .form-group {
-      margin-bottom: 22px;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      margin-top: 8px;
-    }
-    input[type="email"] {
-      width: 270px;
-      padding: 6px 8px;
-      border-radius: 3px;
-      border: 1px solid #a7afc8;
-      font-size: 1em;
-    }
-    .alert-options {
-      margin-top: 9px;
-      margin-bottom: 16px;
-    }
-    .alert-options label {
-      display: inline-block;
-      margin-right: 18px;
-      font-size: 1em;
-      cursor: pointer;
-    }
-    input[type="checkbox"] {
-      margin-right: 6px;
-      accent-color: #205087;
-    }
-    .recaptcha {
-      background: #f9f9f9;
-      border: 1px solid #c6c6c6;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      width: 285px;
-      padding: 10px 12px;
-      margin-bottom: 23px;
-      margin-top: 8px;
-    }
-    .recaptcha-box {
-      width: 22px;
-      height: 22px;
-      border: 1.7px solid #b4bad3;
-      margin-right: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: white;
-    }
-    .recaptcha-box input {
-      width: 21px;
-      height: 21px;
-      margin: 0;
-      accent-color: #205087;
-    }
-    .recaptcha-label {
-      font-size: 1em;
-    }
-    .recaptcha-img {
-      height: 38px;
-      margin-left: auto;
-      opacity: 0.77;
-      filter: grayscale(1);
-    }
-    button[type="submit"] {
-      background: #205087;
-      color: white;
-      font-weight: bold;
-      font-size: 1em;
-      border: none;
-      border-radius: 3px;
-      padding: 8px 25px;
-      cursor: pointer;
-      margin-top: 12px;
-      box-shadow: 0 2px 7px #20508722;
-      transition: background .18s;
-    }
-    button[type="submit"]:hover {
-      background: #153573;
-    }
-    .success-message {
-      display: none;
-      color: #1c7811;
-      background: #e8ffd7;
-      border: 1px solid #adedc0;
-      border-radius: 5px;
-      padding: 10px 15px;
-      margin-top: 12px;
-      margin-bottom: 7px;
-      font-weight: bold;
-    }
-    @media (max-width: 850px) {
-      .container {
-        flex-direction: column;
-        gap: 0px;
-        max-width: 99vw;
-        padding-right: 3vw;
-        padding-left: 3vw;
-      }
-      .sidebar {
-        margin-bottom: 16px;
-        min-width: unset;
-      }
-      .main-content {
-        min-width: unset;
-        padding: 20px 14px 24px 14px;
-      }
-      .header {
-        flex-direction: column;
-        gap: 14px;
-        padding: 20px 2vw 0 2vw;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="topbar">Investor Centre</div>
-  <div class="header">
-    <img src="https://brandlogos.net/wp-content/uploads/2022/04/sonic_healthcare-logo-brandlogos.net_-512x512.png" alt="Sonic Healthcare Logo">
-    <div class="nav">
-      <span>Company Information</span>
-      <span>Announcements</span>
-      <span>Investor Information</span>
-      <span>Sustainability</span>
-      <span>FAQs</span>
-      <span>Contact</span>
-      <span>Go to main site</span>
-      <button style="background:#205087;color:white;border:none;padding:6px 18px;border-radius:3px;margin-left:12px;cursor:pointer;">Register for email updates</button>
-    </div>
+<div class="page">
+  <header></header>
+
+  <div class="logo">
+    <span>AIR NEW ZEALAND</span>
   </div>
-  <div class="container">
-    <div class="sidebar">
-      <ul>
-        <li>Share Price & Tools</li>
-        <li class="selected">Investor Services
-          <ul style="margin-top:6px;">
-            <li style="background:inherit;color:inherit;">Investor Fact Sheet</li>
-            <li style="background:inherit;color:inherit;">My Shareholding</li>
-            <li class="selected">Email Alerts</li>
-            <li style="background:inherit;color:inherit;">Financial Tear Sheet</li>
-          </ul>
-        </li>
-        <li>Reports & Presentations</li>
-        <li>Dividends</li>
-        <li>Annual General Meetings</li>
-        <li>Event Calendar</li>
-        <li>American Depository Receipt Program</li>
-      </ul>
-    </div>
-    <div class="main-content">
-      <div class="breadcrumbs">
-        Investor Information <span>&gt;</span> Investor Services <span>&gt;</span> Email Alerts
+
+  <main class="content">
+    <section class="card">
+      <h1>Sign in</h1>
+
+      <div class="field">
+        <label for="airpoints">Airpoints™ number / username</label>
+        <input id="airpoints" class="input" type="text">
       </div>
-      <div class="title">Email Alerts</div>
-      <div class="desc">
-        Enter your email address, then select the types of alert you’d like to subscribe to. Click ‘Submit’ to save your preferences.
+
+      <div class="checkbox-row">
+        <input id="stay" type="checkbox">
+        <label for="stay">Stay signed in</label>
       </div>
-      <div class="note">
-        If this is your first time subscribing, a confirmation email will be sent soon after you submit your preferences. Please open this email, and click the link listed inside to finalise your subscription to this service. You may return to this page at any time to modify your preferences.
+
+      <button class="btn-primary" type="button">Sign in</button>
+
+      <div class="link-row">
+        <a href="#">Recover your account</a>
       </div>
-      <form id="alertForm">
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group alert-options">
-          <label><input type="checkbox" name="announcement"> Announcement</label>
-          <label><input type="checkbox" name="weekly"> Weekly Summary</label>
-        </div>
-        <div class="recaptcha">
-          <div class="recaptcha-box"><input type="checkbox" id="captcha" required></div>
-          <label class="recaptcha-label" for="captcha">I'm not a robot</label>
-          <img class="recaptcha-img" src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA">
-        </div>
-        <button type="submit">Submit</button>
-        <div class="success-message" id="successMsg">
-          Your preferences have been submitted! Please check your email for the confirmation link.
-        </div>
-      </form>
-      <div style="background:#ffeded; color:#b30000; font-weight:bold; text-align:center; padding:12px; border-bottom:2px solid #ff9999;">
-  ⚠️ Security Testing PoC — This is a demonstration of an Open Redirect leading to a fake subscription page where attacker can capture email of users. 
-  In a real attack, this could be used for even worse scenario. 
+
+      <hr class="divider">
+
+      <div class="subsection-title">Not an Airpoints™ member?</div>
+      <button class="btn-outline" type="button">Join Airpoints</button>
+    </section>
+  </main>
+
+  <footer>
+    A STAR ALLIANCE MEMBER
+  </footer>
 </div>
-    </div>
-  </div>
-  <script>
-    document.getElementById("alertForm").onsubmit = function(e) {
-      e.preventDefault();
-      document.getElementById("successMsg").style.display = "block";
-      setTimeout(function(){
-        document.getElementById("successMsg").style.display = "none";
-      }, 6000);
-      e.target.reset();
-    };
-  </script>
 </body>
 </html>
